@@ -1,16 +1,12 @@
-import {enc as CTSEnc, AES as cipher} from "crypto-ts"
+import DB from "./db.js"
+import enc from "./enc.js"
 
 namespace api{
-    namespace DB{
-        export function open(){
-
-        }
-    }
-
-    namespace enc{}
 
     export function defaultAction(req: any){
-        console.log(req)
+        switch(req.task){
+            case "get": return enc.encrypt(req.text || "test", "haha"); break;
+        }
         return("api is loaded")
     }
 }

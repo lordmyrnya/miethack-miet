@@ -27,6 +27,7 @@ app.use('/api', (request, response) => {
     let data
     if(request.query) data = request.query
     else data = request.body
+    console.log(data)
     response.send(api.defaultAction(data))
 })
 
@@ -36,4 +37,4 @@ app.use('/', (request, response) => {
 
 
 
-app.listen(3000)
+app.listen(port)
