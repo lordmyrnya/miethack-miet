@@ -1,8 +1,17 @@
 import express from "express"
+import bodyParser from "body-parser"
+import api from "./api.js"
 
+const port = process.env.PORT || 3000;
 const app = express()
 
 app.set('view engine', 'pug')
+
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+
+app.use(bodyParser.json());
 
 app.use('/contact', (request, response) => {
     response.render('contact', {
@@ -13,12 +22,15 @@ app.use('/contact', (request, response) => {
     })
 })
 
+app.use('/api', (request, response) => {
+    response.setHeader('Content-Type', 'text/plain')
+    response.send(api.defaultAction(request.body))
+})
+
 app.use('/', (request, response) => {
     response.render('index')
 })
 
-app.use('/api', function (request, response) {
 
-})
 
 app.listen(3000)
