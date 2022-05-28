@@ -22,13 +22,13 @@ app.use('/contact', (request, response) => {
     })
 })
 
-app.use('/api', (request, response) => {
+app.use('/api', async (request, response) => {
     response.setHeader('Content-Type', 'text/plain')
     let data
     //переписать
     data = request.query || request.body
     console.log(data)
-    response.send(api.defaultAction(data))
+    response.send(await api.defaultAction(data))
 })
 
 app.use('/', (request, response) => {
