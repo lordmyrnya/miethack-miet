@@ -8,14 +8,19 @@ async function api(method: string, req?: any) {
         case "dec": return enc.decrypt(req.text || "test", "haha"); break;
         case "corps":
             return await DB.getCorps()
-            break;
+            break
         case "floors":
             return await DB.getFloorCount(req.corpId)
-            break;
+            break
         case "rooms":
             return await DB.getRooms(req.corpId, req.floor)
-            break;
-        case "search": return await DB.getStudents(req.fio, req.corpId, req.floor, req.number); break;
+            break
+        case "search":
+            return await DB.getStudents(req.fio, req.corpId, req.floor, req.number)
+            break
+        case "student":
+            return await DB.getStudentInfo(req.cardNum)
+            break
     }
     return ("api is loaded")
 }

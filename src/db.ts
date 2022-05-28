@@ -20,27 +20,31 @@ namespace DB {
         return result
     }
 
-    export async function getPeopleInRoom(roomNumber: number){
+    export async function getPeopleInRoom(roomNumber: number) {
         const people = `SELECT students.* FROM rooms INNER JOIN students ON rooms.roomId=students.roomId WHERE number=${roomNumber}`
         const result = await db.all(people)
         return result
     }
 
-    export async function getPeopleInRoomId(roomId: number){
+    export async function getPeopleInRoomId(roomId: number) {
         const people = `SELECT students.* FROM rooms INNER JOIN students ON rooms.roomId=students.roomId WHERE number=${roomId}`
         const result = await db.all(people)
         return result
     }
 
-    export async function getStudentInfo(student){}
+    export async function getStudentInfo(cardNum: number) {
+        const student = `SELECT * FROM students WHERE cardNum=${cardNum}`
+        const result = await db.get(student)
+        return result
+    }
 
-    export async function getStudents(FIO: string, corpId: number, floor: number, roomNumber: number){
+    export async function getStudents(FIO: string, corpId: number, floor: number, roomNumber: number) {
         let sql = "SELECT students.cardNum, students.FIO, corps.corpId, rooms.floor, rooms.number FROM rooms INNER JOIN students ON rooms.roomId=students.roomId INNER JOIN corps ON rooms.corpId=corps.corpId"
         let where = false
-        if(FIO){ if(!where) {sql+=" WHERE "; where = true} else sql+=" AND "; sql+=`students.FIO="${FIO}"`} 
-        if(corpId){ if(!where) {sql+=" WHERE "; where = true} else sql+=" AND "; sql+=`rooms.corpId="${corpId}"`} 
-        if(floor){ if(!where) {sql+=" WHERE "; where = true} else sql+=" AND "; sql+=`rooms.floor="${floor}"`} 
-        if(roomNumber){ if(!where) {sql+=" WHERE "; where = true} else sql+=" AND "; sql+=`rooms.number="${roomNumber}"`} 
+        if (FIO) { if (!where) { sql += " WHERE "; where = true } else sql += " AND "; sql += `students.FIO="${FIO}"` }
+        if (corpId) { if (!where) { sql += " WHERE "; where = true } else sql += " AND "; sql += `rooms.corpId="${corpId}"` }
+        if (floor) { if (!where) { sql += " WHERE "; where = true } else sql += " AND "; sql += `rooms.floor="${floor}"` }
+        if (roomNumber) { if (!where) { sql += " WHERE "; where = true } else sql += " AND "; sql += `rooms.number="${roomNumber}"` }
         let result = await db.all(sql)
         return result
     }

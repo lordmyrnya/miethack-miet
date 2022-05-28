@@ -22,7 +22,7 @@ body {
     height: 100%;
 }
 
-.table {
+.content {
     width: calc(100% - 350px);
     height: calc(100% - 25px);
     margin: 20px;
@@ -58,19 +58,47 @@ select {
     width: 50%;
     height: 30px;
     margin-top: 10px;
+    padding: 0 10px;
+    background-color: #1d1d1d;
+    color: white;
+    border: 1px solid white;
 }
 
-.search input {
+input {
     width: calc(100% - 80px);
     height: 30px;
-    font-size: 22pt;
+    font-size: 15pt;
     padding: 0 40px;
-    padding-top: 20px;
+    padding-top: 10px;
     background-color: #1d1d1d;
     border: none;
     color: white;
+    text-align: center;
 }
 
-.search input:focus {
+input:focus {
     outline: none;
+}
+
+table {
+    width: 100%;
+}
+
+table th,
+table td {
+    width: 25%;
+}
+
+.student {
+    position: fixed;
+    border: 2px solid yellow;
+    width: calc(100% - 350px);
+    height: calc(100% - 25px);
+    margin: 20px;
+    transform: translateX(calc(-100% - 20px));
+    transition: .6s;
+}
+
+.student.active {
+    transform: translateX(0) !important;
 }

@@ -14,13 +14,23 @@
 <body>
 
     <div class="wrapper">
-        <div class="table">
-            <div class="search">
-                <input type="text" placeholder="Введите ФИО/номер комнаты"></input>
+        <div class="student">
+        </div>
+        <div class="content">
+            <div class="table">
+                <table>
+                    <tr>
+                        <th>ФИО</th>
+                        <th>Корпус</th>
+                        <th>Этаж</th>
+                        <th>Комната</th>
+                    </tr>
+                </table>
             </div>
         </div>
         <div class="module">
             h2 Фильтры
+            <input type="text" placeholder="Введите ФИО"></input>
             <select class="corp">
                 <option value="" selected disabled>Корпус</option>
                     each corp in corpList
@@ -29,6 +39,7 @@
             <select class="floor">
                 <option value="" selected disabled>Этаж</option>
             </select>
+            <input type="text" placeholder="Номер комнаты"></input>
             <button class="switcher">Добавление</button>
         </div>
         <div class="module hidden">
