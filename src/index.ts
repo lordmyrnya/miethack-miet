@@ -30,8 +30,11 @@ app.use('/api/:method', async (request, response) => {
     response.send(await api(request.params.method, data))
 })
 
-app.use('/', (request, response) => {
-    response.render('index')
+app.use('/', async (request, response) => {
+    let corps = await api("corps")
+    response.render('index', {
+        corpList: corps
+    })
 })
 
 

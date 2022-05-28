@@ -20,7 +20,9 @@
         <div style="background: blue;" class="module">
             h2 Фильтры
             <select class="corp">
-                <option value="" selected>Корпус</option>
+                <option value="" selected disabled>Корпус</option>
+                    each corp in corpList
+                        <option value="#{corp['corpId']}">#{corp['name']}</option>
             </select>
             <select class="floor">
                 <option value="" selected disabled>Этаж</option>
