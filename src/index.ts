@@ -9,9 +9,9 @@ app.set('view engine', 'pug')
 
 app.use(bodyParser.urlencoded({
     extended: false
-}));
+}))
 
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 
 app.use('/contact', (request, response) => {
     response.render('contact', {
@@ -27,7 +27,6 @@ app.use('/api/:method', async (request, response) => {
     let data
     //переписать
     data = request.query || request.body
-    console.log(data)
     response.send(await api(request.params.method, data))
 })
 
