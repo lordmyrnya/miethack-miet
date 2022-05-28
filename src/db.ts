@@ -1,4 +1,5 @@
 import sqlite from 'sqlite-async'
+import enc from './enc.js'
 const db = await sqlite.open('./db/students.db')
 namespace DB {
     export async function getCorps() {
@@ -45,6 +46,8 @@ namespace DB {
         if (corpId) { if (!where) { sql += " WHERE "; where = true } else sql += " AND "; sql += `rooms.corpId="${corpId}"` }
         if (floor) { if (!where) { sql += " WHERE "; where = true } else sql += " AND "; sql += `rooms.floor="${floor}"` }
         if (roomNumber) { if (!where) { sql += " WHERE "; where = true } else sql += " AND "; sql += `rooms.number="${roomNumber}"` }
+        sql+=" GROUP BY rooms.number"
+        console.log(sql)
         let result = await db.all(sql)
         return result
     }
