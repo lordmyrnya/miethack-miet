@@ -10,7 +10,6 @@ namespace api{
     namespace enc{}
 
     export function defaultAction(req: any){
-        console.log("asd")
         console.log(req)
         return("api is loaded")
     }

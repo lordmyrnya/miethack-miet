@@ -24,7 +24,10 @@ app.use('/contact', (request, response) => {
 
 app.use('/api', (request, response) => {
     response.setHeader('Content-Type', 'text/plain')
-    response.send(api.defaultAction(request.body))
+    let data
+    if(request.query) data = request.query
+    else data = request.body
+    response.send(api.defaultAction(data))
 })
 
 app.use('/', (request, response) => {
