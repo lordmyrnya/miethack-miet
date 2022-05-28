@@ -3,16 +3,6 @@ const switchers = document.querySelectorAll('.switcher')
 const corpSelect = document.querySelector('.corp')
 const floorSelect = document.querySelector('.floor')
 
-//Загрузка корпусов
-const result = await(await fetch('http://localhost:3000/api/corps')).json()
-for (const item of result) {
-    const option = document.createElement('option')
-    option.value = item.corpId
-    option.textContent = item.name
-    corpSelect.append(option)
-}
-corpSelect.children[0].disabled = true
-
 corpSelect.onchange = async evt => {
     while (floorSelect.children.length > 1)
         floorSelect.lastChild.remove()
