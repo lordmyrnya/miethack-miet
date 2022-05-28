@@ -3,7 +3,7 @@ const db = await sqlite.open('./db/students.db')
 namespace DB {
     export async function getCorps() {
         // const sql = 'SELECT corpId,MAX(floor) FROM corps INNER JOIN rooms ON corps.corpId=rooms.corpId'
-        const corpsIds = 'SELECT corpId FROM corps'
+        const corpsIds = 'SELECT corpId,name FROM corps'
         const result = await db.all(corpsIds)
         return result
     }

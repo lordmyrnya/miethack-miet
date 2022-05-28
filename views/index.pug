@@ -19,20 +19,11 @@
         </div>
         <div style="background: blue;" class="module">
             h2 Фильтры
-            <select>
+            <select class="corp">
                 <option value="" selected>Корпус</option>
-                <option>1 корпус</option>
-                <option>2 корпус</option>
-                <option>3 корпус</option>
-                <option>4 корпус</option>
             </select>
             <select>
-                <option value="" selected>Этаж</option>
-                <option>1 этаж</option>
-                <option>2 этаж</option>
-                <option>3 этаж</option>
-                <option>4 этаж</option>
-                <option>5 этаж</option>
+                <option value="" selected disabled>Этаж</option>
             </select>
             <button class="switcher">Добавление</button>
         </div>
@@ -44,7 +35,7 @@
 
 </body>
 
-script
+script(type="module")
     include index.js
 
 </html>
