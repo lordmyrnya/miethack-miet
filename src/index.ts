@@ -1,10 +1,10 @@
-const express = require('express')
+import express from "express"
 
 const app = express()
 
 app.set('view engine', 'pug')
 
-app.use('/contact', function (request, response) {
+app.use('/contact', (request, response) => {
     response.render('contact', {
         title: 'Мои контактыыы',
         emailsVisible: true,
@@ -13,8 +13,12 @@ app.use('/contact', function (request, response) {
     })
 })
 
-app.use('/', function (request, response) {
-    response.send('Главная страница')
+app.use('/', (request, response) => {
+    response.render('index')
+})
+
+app.use('/api', function (request, response) {
+
 })
 
 app.listen(3000)
