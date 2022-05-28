@@ -27,6 +27,12 @@ namespace DB {
         return result
     }
 
+    export async function getPeopleCountInRoom(roomNumber: number){
+        const people = `SELECT COUNT(*) FROM rooms INNER JOIN students ON rooms.roomId=students.roomId WHERE number=${roomNumber}`
+        const result = (await db.all(people))["COUNT(*)"]
+        return result
+    }
+
     export async function getPeopleInRoomId(roomId: number) {
         const people = `SELECT students.* FROM rooms INNER JOIN students ON rooms.roomId=students.roomId WHERE number=${roomId}`
         const result = await db.all(people)
@@ -46,7 +52,8 @@ namespace DB {
         if (corpId) { if (!where) { sql += " WHERE "; where = true } else sql += " AND "; sql += `rooms.corpId="${corpId}"` }
         if (floor) { if (!where) { sql += " WHERE "; where = true } else sql += " AND "; sql += `rooms.floor="${floor}"` }
         if (roomNumber) { if (!where) { sql += " WHERE "; where = true } else sql += " AND "; sql += `rooms.number="${roomNumber}"` }
-        sql+=" GROUP BY rooms.number"
+        //sql+=" GROUP BY rooms.number"
+        console.log(sql)
         let result = await db.all(sql)
         return result
     }
