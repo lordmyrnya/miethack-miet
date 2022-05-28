@@ -46,7 +46,7 @@ namespace DB {
     }
 
     export async function getStudents(FIO: string, corpId: number, floor: number, roomNumber: number) {
-        let sql = "SELECT students.cardNum, students.FIO, corps.corpId, rooms.floor, rooms.number FROM rooms INNER JOIN students ON rooms.roomId=students.roomId INNER JOIN corps ON rooms.corpId=corps.corpId"
+        let sql = "SELECT students.cardNum, students.FIO, corps.name, rooms.floor, rooms.number FROM rooms INNER JOIN students ON rooms.roomId=students.roomId INNER JOIN corps ON rooms.corpId=corps.corpId"
         let where = false
         if (FIO) { if (!where) { sql += " WHERE "; where = true } else sql += " AND "; sql += `students.FIO LIKE "%${FIO}%"` }
         if (corpId) { if (!where) { sql += " WHERE "; where = true } else sql += " AND "; sql += `rooms.corpId="${corpId}"` }
