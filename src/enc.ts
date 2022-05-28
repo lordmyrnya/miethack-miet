@@ -5,7 +5,7 @@ import { WordArray } from "crypto-ts/src/lib/WordArray"
 
 namespace enc{
     export function encrypt(decrypted: string | WordArray, key: string | WordArray){
-        return cipher.encrypt(decrypted, key).iv.toString()
+        return cipher.encrypt(decrypted, key)
     }
 
     export function decrypt(encrypted: string | CipherParams, key: string | WordArray){
