@@ -33,7 +33,8 @@ app.use('/api/:method', async (request, response) => {
 app.use('/', async (request, response) => {
     let corps = await api("corps")
     response.render('index', {
-        corpList: corps
+        corpList: corps,
+        defaultCorp: true
     })
 })
 
