@@ -8,6 +8,9 @@ const number = document.querySelector('.number')
 const table = document.querySelector('.table tbody')
 const studentModule = document.querySelector('.student')
 const closeStudent = document.querySelector('.close-student')
+// const newStudent = document.querySelector('.newStudent-btn')
+// const adminPanelBtn = document.querySelector('.adminPanel-btn')
+const backBtns = document.querySelectorAll('.back-btn')
 
 const studentName = document.querySelector('.student h3')
 const studentCardNum = document.querySelector('.cardNum')
@@ -18,7 +21,20 @@ const studentEnrollDate = document.querySelector('.enrollDate')
 const studentBirthPlace = document.querySelector('.birthPlace')
 const studentAddress = document.querySelector('.address')
 
+const newStudentFio = document.querySelector('.newStudent .fio')
+const newStudentCorpSelect = document.querySelector('.newStudent .corp')
+const newStudentFloorSelect = document.querySelector('.newStudent .floor')
+const newStudentNumber = document.querySelector('.newStudent .number')
+const newStudentBirthDate = document.querySelector('.newStudent .birthDate')
+const newStudentOrderDorm = document.querySelector('.newStudent .orderDorm')
+const newStudentOrderEnroll = document.querySelector('.newStudent .orderEnroll')
+const newStudentEnrollDate = document.querySelector('.newStudent .enrollDate')
+const newStudentBirthPlace = document.querySelector('.newStudent .birthPlace')
+const newStudentAddress = document.querySelector('.newStudent .address')
+const pushStudent = document.querySelector('.pushStudent')
+
 corpSelect.children[0].selected = true
+newStudentCorpSelect.children[0].selected = true
 
 corpSelect.onchange = async evt => {
     while (floorSelect.children.length > 1)
@@ -36,10 +52,38 @@ corpSelect.onchange = async evt => {
     }
 }
 
+newStudentCorpSelect.onchange = async evt => {
+    while (newStudentFloorSelect.children.length > 1)
+        newStudentFloorSelect.lastChild.remove()
+
+    if (!newStudentCorpSelect.value)
+        return
+
+    const floorsCount = await (await fetch(`http://localhost:3000/api/floors?corpId=${evt.target.value}`)).json()
+    for (let i = 1; i <= floorsCount['MAX(floor)']; i++) {
+        const floor = document.createElement('option')
+        floor.value = i
+        floor.textContent = `Этаж ${i}`
+        newStudentFloorSelect.append(floor)
+    }
+}
+
 switchers.forEach(switcher => {
-    switcher.onclick = async () => {
-        modules.forEach(module => module.classList.toggle('hidden'))
+    switcher.onclick = async evt => {
+        evt.target.parentNode.classList.toggle('hidden')
         await sleep(300)
+        if (evt.target.classList.contains('newStudent-btn'))
+            document.querySelectorAll('.module')[1].classList.toggle('hidden')
+        if (evt.target.classList.contains('adminPanel-btn'))
+            document.querySelectorAll('.module')[2].classList.toggle('hidden')
+    }
+})
+
+backBtns.forEach(btn => {
+    btn.onclick = async () => {
+        modules.forEach(module => module.classList.add('hidden'))
+        await sleep(300)
+        modules[0].classList.remove('hidden')
     }
 })
 
@@ -108,6 +152,26 @@ table.onclick = async evt => {
 }
 
 closeStudent.onclick = () => studentModule.classList.toggle('active')
+
+pushStudent.onclick = async () => {
+    let roomId = await (await fetch(`http://localhost:3000/api/roomId?corpId=${newStudentCorpSelect.value}&floor=${newStudentFloorSelect.value}&number=${newStudentNumber.value}`)).json()
+    roomId = roomId.roomId
+    console.log(newStudentAddress.value)
+    const data = {
+        "FIO": newStudentFio.value,
+        "birthDate": newStudentBirthDate.value,
+        "orderDorm": newStudentOrderDorm.value,
+        "orderEnroll": newStudentOrderEnroll.value,
+        "enrollDate": newStudentEnrollDate.value,
+        "birthPlace": newStudentBirthPlace.value,
+        "address": newStudentAddress.value,
+        "roomId": roomId
+    }
+    console.log(data);
+    // const link = `http://localhost:3000/api/newStudent?FIO=${newStudentFio.value}&birthDate=${newStudentBirthDate.value}&orderDorm=${newStudentOrderDorm.value}&orderEnroll=${newStudentOrderEnroll.value}&enrollDate=${newStudentEnrollDate.value}&birthPlace=${newStudentBirthPlace.value}&address=${newStudentAddress.value}&roomId=${roomId}`
+    // console.log(link);
+    // fetch(link)
+}
 
 const sleep = ms => {
     return new Promise(resolve => setTimeout(resolve, ms))

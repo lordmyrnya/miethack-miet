@@ -42,6 +42,7 @@ body {
     margin-top: 20px;
     padding-top: 20px;
     border: 2px solid white;
+    overflow-y: scroll;
     transition: .3s;
 }
 
@@ -52,6 +53,7 @@ select {
 .module button {
     width: 50%;
     height: 30px;
+    min-height: 30px;
     background-color: #1d1d1d;
     color: white;
     border: 1px solid white;
@@ -70,6 +72,7 @@ select {
 select {
     width: 80%;
     height: 45px;
+    min-height: 45px;
     margin-top: 7px;
     margin-bottom: 7px;
     padding: 0 10px;
@@ -91,11 +94,13 @@ select {
 .module input {
     background-color: #1d1d1d;
     height: 30px;
+    min-height: 30px;
 }
 
 .module button {
     background-color: rgb(15, 15, 15);
     height: 40px;
+    min-height: 40px;
 }
 
 input:focus {

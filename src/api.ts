@@ -21,6 +21,12 @@ async function api(method: string, req?: any) {
         case "student":
             return await DB.getStudentInfo(req.cardNum)
             break
+        case "roomId":
+            return await DB.getRoomID(req.corpId, req.floor, req.number)
+            break
+        case "newStudent":
+            DB.setStudentInfo(req.FIO, req.birthDate, req.orderDorm, req.orderEnroll, req.enrollDate, req.birthPlace, req.address, req.roomId)
+            break
     }
     return ("api is loaded")
 }

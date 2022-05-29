@@ -81,13 +81,35 @@
             </select>
             <input class="number" type="text" placeholder="Номер комнаты"></input>
             <button class="search-btn">Поиск</button>
+            <button class="switcher newStudent-btn">Заселить</button>
             if admin
-                <button class="switcher">Добавление</button>
+                <button class="switcher adminPanel-btn">Админ панель</button>
+        </div>
+        <div class="module hidden newStudent">
+                h2 Заселение
+                <input class="fio" type="text" placeholder="Введите ФИО"></input>
+                <select class="corp">
+                    <option value="" selected>Корпус</option>
+                        each corp in corpList
+                            <option value="#{corp['corpId']}">#{corp['name']}</option>
+                </select>
+                <select class="floor">
+                    <option value="" selected>Этаж</option>
+                </select>
+                <input class="number" type="text" placeholder="Номер комнаты"></input>
+                <input class="birthDate" type="date" placeholder="Дата рождения"></input>
+                <input class="orderDorm" type="text" placeholder="Приказ (общежитие)"></input>
+                <input class="orderEnroll" type="text" placeholder="Приказ (зачисление)"></input>
+                <input class="enrollDate" type="date" placeholder="Дата зачисления"></input>
+                <input class="birthPlace" type="text" placeholder="Место рождения"></input>
+                <input class="address" type="text" placeholder="Адрес проживания"></input>
+                <button class="pushStudent">Заселить</button>
+                <button class="back-btn">Назад</button>
         </div>
         if admin
             <div class="module hidden">
-                h2 Добавление
-                <button class="switcher">Фильтры</button>
+                h2 Админ панель
+                <button class="back-btn">Назад</button>
             </div>
     </div>
 
