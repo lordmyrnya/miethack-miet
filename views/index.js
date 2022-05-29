@@ -9,6 +9,15 @@ const table = document.querySelector('.table tbody')
 const studentModule = document.querySelector('.student')
 const closeStudent = document.querySelector('.close-student')
 
+const studentName = document.querySelector('.student h3')
+const studentCardNum = document.querySelector('.cardNum')
+const studentBirthDate = document.querySelector('.birthDate')
+const studentOrderDorm = document.querySelector('.orderDorm')
+const studentOrderEnroll = document.querySelector('.orderEnroll')
+const studentEnrollDate = document.querySelector('.enrollDate')
+const studentBirthPlace = document.querySelector('.birthPlace')
+const studentAddress = document.querySelector('.address')
+
 corpSelect.children[0].selected = true
 
 corpSelect.onchange = async evt => {
@@ -87,6 +96,15 @@ table.onclick = async evt => {
     if (!cardNum)
         return
     const studentInfo = await (await fetch(`http://localhost:3000/api/student?cardNum=${cardNum}`)).json()
+    studentName.textContent = studentInfo.FIO
+    console.log(studentInfo);
+    studentCardNum.textContent = studentInfo.cardNum
+    studentBirthDate.textContent = studentInfo.birthDate
+    studentOrderDorm.textContent = studentInfo.orderDorm
+    studentOrderEnroll.textContent = studentInfo.orderEnroll
+    studentEnrollDate.textContent = studentInfo.enrollDate
+    studentBirthPlace.textContent = studentInfo.birthPlace
+    studentAddress.textContent = studentInfo.address
     studentModule.classList.toggle('active')
 }
 

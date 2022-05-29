@@ -2,7 +2,7 @@ import express from "express"
 import bodyParser from "body-parser"
 import api from "./api.js"
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000
 const app = express()
 
 app.set('view engine', 'pug')
