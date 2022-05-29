@@ -14,8 +14,47 @@
 <body>
 
     <div class="wrapper">
+        
         <div class="student">
+            <span class="close-student">&#10005;</span>
+            <h3>Человек Человекович Человеков</h3>
+            <div class="student-table">
+                <img height="400px" width="300px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Aspect_ratio_-_4x3.svg/1280px-Aspect_ratio_-_4x3.svg.png">
+                    
+                </img>
+                <table>
+                    <tr>
+                        <td>Номер карточки</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Дата рождения</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Приказ (общежитие)</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Приказ (зачисление)</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Дата зачисления</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Место рождения</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Адрес проживания</td>
+                        <td>1</td>
+                    </tr>
+                </table>
+            </div>
         </div>
+        
         <div class="content">
             <div class="table">
                 <table>
@@ -30,16 +69,17 @@
         </div>
         <div class="module">
             h2 Фильтры
-            <input type="text" placeholder="Введите ФИО"></input>
+            <input class="fio" type="text" placeholder="Введите ФИО"></input>
             <select class="corp">
-                <option value="" selected disabled>Корпус</option>
+                <option value="" selected>Корпус</option>
                     each corp in corpList
                         <option value="#{corp['corpId']}">#{corp['name']}</option>
             </select>
             <select class="floor">
-                <option value="" selected disabled>Этаж</option>
+                <option value="" selected>Этаж</option>
             </select>
-            <input type="text" placeholder="Номер комнаты"></input>
+            <input class="number" type="text" placeholder="Номер комнаты"></input>
+            <button class="search-btn">Поиск</button>
             <button class="switcher">Добавление</button>
         </div>
         <div class="module hidden">

@@ -27,6 +27,7 @@ body {
     height: calc(100% - 25px);
     margin: 20px;
     border: 2px solid white;
+    overflow-y: scroll;
 }
 
 .module {
@@ -80,8 +81,20 @@ input:focus {
     outline: none;
 }
 
-table {
+.table table {
     width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+table tr {
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.table table tr:not(:first-child):hover {
+    background-color: #353535;
 }
 
 table th,
@@ -91,14 +104,56 @@ table td {
 
 .student {
     position: fixed;
+    background-color: #1d1d1d;
     border: 2px solid yellow;
     width: calc(100% - 350px);
     height: calc(100% - 25px);
     margin: 20px;
     transform: translateX(calc(-100% - 20px));
+    overflow-y: scroll;
     transition: .6s;
 }
 
 .student.active {
     transform: translateX(0) !important;
+}
+
+.student h3 {
+    margin-top: 30px;
+    margin-left: 50px;
+}
+
+.student-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.student-table img {
+    margin-left: 50px;
+}
+
+.student-table table {
+    width: 100%;
+    margin-left: 30px;
+}
+
+.student-table td {
+    width: 33%;
+    text-align: left;
+}
+
+.close-student {
+    font-size: 22pt;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+.search-btn {
+    width: 50%;
+    height: 30px;
+    padding: 0 20px;
 }
