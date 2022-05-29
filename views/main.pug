@@ -13,7 +13,7 @@
 
 
 <body>
-
+    #{admin}
     <div class="wrapper">
         
         <div class="student">
@@ -81,12 +81,14 @@
             </select>
             <input class="number" type="text" placeholder="Номер комнаты"></input>
             <button class="search-btn">Поиск</button>
-            <button class="switcher">Добавление</button>
+            if admin
+                <button class="switcher">Добавление</button>
         </div>
-        <div class="module hidden">
-            h2 Добавление
-            <button class="switcher">Фильтры</button>
-        </div>
+        if admin
+            <div class="module hidden">
+                h2 Добавление
+                <button class="switcher">Фильтры</button>
+            </div>
     </div>
 
 </body>

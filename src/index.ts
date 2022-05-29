@@ -21,14 +21,20 @@ app.use('/api/:method', async (request, response) => {
     response.send(await api(request.params.method, data))
 })
 
+app.use('/admin', async (request, response) => {
+    let corps = await api("corps")
+    response.render('main', {
+        corpList: corps,
+        admin: true
+    })
+})
+
 app.use('/', async (request, response) => {
     let corps = await api("corps")
     response.render('main', {
         corpList: corps,
-        defaultCorp: true
+        admin: false
     })
 })
-
-
 
 app.listen(port)
