@@ -65,7 +65,8 @@ namespace DB {
     }
 
     export function setStudentInfo(FIO: string, birthDate: string, orderDorm: number, orderEnroll: number, enrollDate: string, birthPlace: string, address: string, roomId: number) {
-        const sql = `INSERT INTO students (FIO, birthDate, orderDorm, orderEnroll, enrollDate, birthPlace, address, roomId) VALUES(${FIO}, ${birthDate}, ${orderDorm}, ${orderEnroll}, ${enrollDate}, ${birthPlace}, ${address}, ${roomId})`
+        const sql = `INSERT INTO students (FIO, birthDate, orderDorm, orderEnroll, enrollDate, birthPlace, address, roomId) VALUES("${FIO}", "${birthDate}", ${orderDorm}, ${orderEnroll}, "${enrollDate}", "${birthPlace}", "${address}", ${roomId})`
+        console.log(sql)
         db.run(sql)
     }
 }

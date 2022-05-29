@@ -14,11 +14,13 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json())
 
-app.use('/api/:method', async (request, response) => {
+app.all('/api/:method', async (request, response) => {
     response.setHeader('Content-Type', 'text/plain')
     let data
     //переписать
-    data = request.query || request.body
+    if(Object.keys(request.body).length>0) data = request.body
+    else data = request.query
+    console.log(request.body)
     response.send(await api(request.params.method, data))
 })
 

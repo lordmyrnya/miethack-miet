@@ -156,7 +156,6 @@ closeStudent.onclick = () => studentModule.classList.toggle('active')
 pushStudent.onclick = async () => {
     let roomId = await (await fetch(`http://localhost:3000/api/roomId?corpId=${newStudentCorpSelect.value}&floor=${newStudentFloorSelect.value}&number=${newStudentNumber.value}`)).json()
     roomId = roomId.roomId
-    console.log(newStudentAddress.value)
     const data = {
         "FIO": newStudentFio.value,
         "birthDate": newStudentBirthDate.value,
@@ -167,7 +166,13 @@ pushStudent.onclick = async () => {
         "address": newStudentAddress.value,
         "roomId": roomId
     }
-    console.log(data);
+    let a = fetch("http://localhost:3000/api/newStudent", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
     // const link = `http://localhost:3000/api/newStudent?FIO=${newStudentFio.value}&birthDate=${newStudentBirthDate.value}&orderDorm=${newStudentOrderDorm.value}&orderEnroll=${newStudentOrderEnroll.value}&enrollDate=${newStudentEnrollDate.value}&birthPlace=${newStudentBirthPlace.value}&address=${newStudentAddress.value}&roomId=${roomId}`
     // console.log(link);
     // fetch(link)

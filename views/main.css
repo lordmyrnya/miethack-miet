@@ -127,6 +127,10 @@ input:focus {
 table th,
 table td {
     width: 25%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .student {
