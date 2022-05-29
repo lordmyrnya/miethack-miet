@@ -45,36 +45,57 @@ body {
     transition: .3s;
 }
 
+select {
+    cursor: pointer;
+}
+
+.module button {
+    width: 50%;
+    height: 30px;
+    background-color: #1d1d1d;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
 .hidden {
     transform: translateX(300px);
 }
 
 .switcher {
-    width: 100px;
     height: 30px;
     margin-top: 10px;
 }
 
 select {
-    width: 50%;
-    height: 30px;
-    margin-top: 10px;
+    width: 80%;
+    height: 45px;
+    margin-top: 7px;
+    margin-bottom: 7px;
     padding: 0 10px;
     background-color: #1d1d1d;
     color: white;
     border: 1px solid white;
 }
 
-input {
-    width: calc(100% - 80px);
-    height: 30px;
-    font-size: 15pt;
-    padding: 0 40px;
-    padding-top: 10px;
-    background-color: #1d1d1d;
-    border: none;
+.module input,
+.module button {
+    width: 80%;
+    padding: 5px 0;
+    margin: 5px 0;
+    border: 1px solid white;
     color: white;
     text-align: center;
+}
+
+.module input {
+    background-color: #1d1d1d;
+    height: 30px;
+}
+
+.module button {
+    background-color: rgb(15, 15, 15);
+    height: 40px;
 }
 
 input:focus {
@@ -153,7 +174,5 @@ table td {
 }
 
 .search-btn {
-    width: 50%;
-    height: 30px;
     padding: 0 20px;
 }

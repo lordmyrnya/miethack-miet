@@ -37,6 +37,10 @@ switchers.forEach(switcher => {
 buttons.forEach(button => {
     button.onclick = loadStudents
 })
+floorSelect.onchange = () => {
+    if (floorSelect.value)
+        loadStudents()
+}
 fio.oninput = () => {
     if (fio.value)
         loadStudents()
