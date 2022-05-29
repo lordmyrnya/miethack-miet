@@ -128,10 +128,14 @@ table th,
 table td {
     width: 25%;
     height: 100%;
+}
+
+.table td {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 
 .student {
     position: fixed;
