@@ -166,7 +166,7 @@ pushStudent.onclick = async () => {
         "address": newStudentAddress.value,
         "roomId": roomId
     }
-    let a = fetch("http://localhost:3000/api/newStudent", {
+    fetch("http://localhost:3000/api/newStudent", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -176,6 +176,66 @@ pushStudent.onclick = async () => {
     // const link = `http://localhost:3000/api/newStudent?FIO=${newStudentFio.value}&birthDate=${newStudentBirthDate.value}&orderDorm=${newStudentOrderDorm.value}&orderEnroll=${newStudentOrderEnroll.value}&enrollDate=${newStudentEnrollDate.value}&birthPlace=${newStudentBirthPlace.value}&address=${newStudentAddress.value}&roomId=${roomId}`
     // console.log(link);
     // fetch(link)
+}
+
+const addCorp = document.querySelector('.admin-panel .addCorp')
+const delCorp = document.querySelector('.admin-panel .delCorp')
+const addNumber = document.querySelector('.admin-panel .addNumber')
+const delNumber = document.querySelector('.admin-panel .delNumber')
+
+addCorp.onclick = () => {
+    const data = {
+        "name": document.querySelector('.admin-panel .corpName').value,
+        "location": document.querySelector('.admin-panel, .corpLocation').value
+    }
+    fetch("http://localhost:3000/api/addCorp", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+}
+
+delCorp.onclick = () => {
+    const data = {
+        "corpId": document.querySelector('.admin-panel .corp').value
+    }
+    fetch("http://localhost:3000/api/removeCorp", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+}
+
+addNumber.onclick = () => {
+    const data = {
+        "corpId": document.querySelector('.admin-panel .corpId').value,
+        "floor": document.querySelector('.admin-panel .floor').value,
+        "roomNumber": document.querySelector('.admin-panel .number').value
+    }
+    fetch("http://localhost:3000/api/addRoom", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+}
+
+delNumber.onclick = () => {
+    const data = {
+        "roomId": document.querySelector('.admin-panel .roomId').value
+    }
+    fetch("http://localhost:3000/api/removeRoom", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
 }
 
 const sleep = ms => {

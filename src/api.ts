@@ -26,7 +26,7 @@ async function api(method: string, req?: any) {
             DB.setStudentInfo(req.FIO, req.birthDate, req.orderDorm, req.orderEnroll, req.enrollDate, req.birthPlace, req.address, req.roomId)
             break
         case "addCorp":
-            DB.addCorp(req.name)
+            DB.addCorp(req.name, req.location)
             break
         case "removeCorp":
             DB.removeCorp(req.corpId)

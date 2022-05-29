@@ -107,8 +107,27 @@
                 <button class="back-btn">Назад</button>
         </div>
         if admin
-            <div class="module hidden">
+            <div class="module hidden admin-panel">
                 h2 Админ панель
+                h5 Добавление корпуса
+                <input class="corpName" type="text" placeholder="Название"></input>
+                <input class="corpLocation" type="text" placeholder="Адрес"></input>
+                <button class="addCorp">Добавить</button>
+                h5 Удаление корпуса
+                <select class="corp">
+                    <option value="" selected>Корпус</option>
+                        each corp in corpList
+                            <option value="#{corp['corpId']}">#{corp['name']}</option>
+                </select>
+                <button class="delCorp">Удалить</button>
+                h5 Добавление комнаты
+                <input class="corpId" type="text" placeholder="ID корпуса"></input>
+                <input class="floor" type="text" placeholder="Этаж"></input>
+                <input class="number" type="text" placeholder="1-10/5 (номера)"></input>
+                <button class="addNumber">Добавить</button>
+                h5 Удаление комнаты
+                <input class="roomId" type="text" placeholder="ID корпуса"></input>
+                <button class="delNumber">Удалить</button>
                 <button class="back-btn">Назад</button>
             </div>
     </div>

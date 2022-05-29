@@ -69,11 +69,11 @@ namespace DB {
         if (roomNumber) { if (!where) { sql += " WHERE "; where = true } else sql += " AND "; sql += `rooms.number="${roomNumber}"` }
         //sql+=" GROUP BY rooms.number"
         let result = await db.all(sql)
-        for(let i=0; i<result.length; i++) 
+        for (let i = 0; i < result.length; i++)
             result[i].FIO = enc.decrypt(
-                result[i].FIO, 
-                pass, 
-                undefined, 
+                result[i].FIO,
+                pass,
+                undefined,
                 enc.convertFromHex(result[i].iv)
             )
 
@@ -90,27 +90,27 @@ namespace DB {
         address = enc.encrypt(address, pass, undefined, iv)["enc"]
 
         const sql = `INSERT INTO students (FIO, birthDate, orderDorm, orderEnroll, enrollDate, birthPlace, address, roomId, iv) VALUES("${FIO}", "${birthDate}", ${orderDorm}, ${orderEnroll}, "${enrollDate}", "${birthPlace}", "${address}", ${roomId}, "${biv}")`
-        
+
         console.log(sql)
         db.run(sql)
     }
 
-    export function addCorp(name: string){
-        const sql = `INSERT INTO corps (name) VALUES (${name})`
+    export function addCorp(name: string, location: string) {
+        const sql = `INSERT INTO corps (name, location) VALUES ("${name}", "${location}")`
         db.run(sql)
     }
 
-    export function removeCorp(corpId: string){
+    export function removeCorp(corpId: number) {
         const sql = `DELETE FROM corps WHERE corpId=${corpId}`
         db.run(sql)
     }
 
-    export function addRoom(roomNumber:number, floor:number, corpId: number){
+    export function addRoom(roomNumber: number, floor: number, corpId: number) {
         const sql = `INSERT INTO rooms (number, floor, corpId) VALUES (${roomNumber}, ${floor}, ${corpId})`
         db.run(sql)
     }
 
-    export function removeRoom(roomId:number){
+    export function removeRoom(roomId: number) {
         const sql = `DELETE FROM rooms WHERE roomId=${roomId}`
         db.run(sql)
     }
