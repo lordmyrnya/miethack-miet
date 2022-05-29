@@ -13,15 +13,6 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json())
 
-app.use('/contact', (request, response) => {
-    response.render('contact', {
-        title: 'Мои контактыыы',
-        emailsVisible: true,
-        emails: ['gavgav@mycorp.com', 'mioaw@mycorp.com'],
-        phone: '+1234567890',
-    })
-})
-
 app.use('/api/:method', async (request, response) => {
     response.setHeader('Content-Type', 'text/plain')
     let data
@@ -32,7 +23,7 @@ app.use('/api/:method', async (request, response) => {
 
 app.use('/', async (request, response) => {
     let corps = await api("corps")
-    response.render('index', {
+    response.render('main', {
         corpList: corps,
         defaultCorp: true
     })

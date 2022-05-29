@@ -97,7 +97,6 @@ table.onclick = async evt => {
         return
     const studentInfo = await (await fetch(`http://localhost:3000/api/student?cardNum=${cardNum}`)).json()
     studentName.textContent = studentInfo.FIO
-    console.log(studentInfo);
     studentCardNum.textContent = studentInfo.cardNum
     studentBirthDate.textContent = studentInfo.birthDate
     studentOrderDorm.textContent = studentInfo.orderDorm
