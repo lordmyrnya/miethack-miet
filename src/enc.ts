@@ -2,7 +2,8 @@ import {
     scryptSync,
     randomFillSync,
     createCipheriv,
-    createDecipheriv
+    createDecipheriv,
+    randomBytes
 } from 'crypto';
   
 import { Buffer } from 'node:buffer';
@@ -10,36 +11,43 @@ import { Buffer } from 'node:buffer';
 const defaultAlgorithm = "aes-256-cbc"
   
 namespace enc{
-    export function encrypt(text:string, password: string, algorithm: string = defaultAlgorithm, iv?:Uint8Array): Object{
+    export function encrypt(text:string, password: string, algorithm: string = "aes-256-cbc", iv?:Buffer): Object{
         let result = {}
         
-        let key = scryptSync(password, "supersecretsalt", 32)
+        let key = scryptSync(password, "", 32)
       
-        if(!iv) iv = randomFillSync(new Uint8Array(16))
+        if(!iv) iv = randomBytes(16);
         let cipher = createCipheriv(algorithm, key, iv)
-        let encrypted
-        cipher.update(text)
-      
-        result["enc"] = cipher.final().toString("hex");
-        result["iv"] = iv
+        let encrypted = cipher.update(text, "utf8", "hex");
+        encrypted += cipher.final("hex");
+        result["enc"] = encrypted
+        result["iv"] = iv.toString("hex")
       
         return result
     }
       
-    export function decrypt(enc: string, password: string, algorithm: string = defaultAlgorithm, iv:Uint8Array): string{
-        let key = scryptSync(password, "supersecretsalt", 32)
+    export function decrypt(enc: string, password: string, algorithm: string = "aes-256-cbc", iv:Buffer): string{
+        let key = scryptSync(password, "", 32)
         let decipher = createDecipheriv(algorithm, key, iv);
-        decipher.update(enc, 'hex', 'utf8');
-        return(decipher.final('utf8'));
+        let decrypted = decipher.update(enc, "hex", "utf8");
+        decrypted += decipher.final("utf8");
+
+        return decrypted.toString();
     }
-      
-    export function convertToBase64(uint8: Uint8Array):string{
-        return Buffer.from(uint8).toString("base64")
-    }
-      
-    export function convertToUint8(base64: string):Uint8Array{
-        return Uint8Array.from(Buffer.from(base64, "base64"))
-    }
-}
   
-export default enc
+    export function createIV(): Buffer{
+        return randomBytes(16);
+    }
+
+    export function convertFromHex(hex: string){
+        return Buffer.from(hex, "hex")
+    }
+  
+    export function decryptStudents(students: Array<Object>){
+        for(let i=0; i<students.length; i++){
+            
+        }
+    }
+  }
+  
+  export default enc
