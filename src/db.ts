@@ -21,6 +21,12 @@ namespace DB {
         return result
     }
 
+    export async function getRoomID(corpId: number, floor: number, roomNumber:number){
+        const rooms = `SELECT roomId FROM rooms WHERE corpId=${corpId} AND floor=${floor} AND number=${roomNumber}`
+        const result = await db.all(rooms)
+        return result
+    }
+
     export async function getPeopleInRoom(roomNumber: number) {
         const people = `SELECT students.* FROM rooms INNER JOIN students ON rooms.roomId=students.roomId WHERE number=${roomNumber}`
         const result = await db.all(people)
