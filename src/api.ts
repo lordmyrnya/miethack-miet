@@ -25,6 +25,19 @@ async function api(method: string, req?: any) {
         case "newStudent":
             DB.setStudentInfo(req.FIO, req.birthDate, req.orderDorm, req.orderEnroll, req.enrollDate, req.birthPlace, req.address, req.roomId)
             break
+        case "addCorp":
+            DB.addCorp(req.name)
+            break
+        case "removeCorp":
+            DB.removeCorp(req.corpId)
+            break
+        case "addRoom":
+            DB.addRoom(req.roomNumber, req.floor, req.corpId)
+            break
+        case "removeRoom":
+            DB.removeRoom(req.roomId)
+            break
+
     }
     return ("api is loaded")
 }

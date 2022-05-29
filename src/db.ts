@@ -1,6 +1,7 @@
 import sqlite from 'sqlite-async'
 import enc from './enc.js'
 import 'dotenv/config'
+import { futimes } from 'node:fs'
 const pass = process.env.SECRETPASSWORD
 const db = await sqlite.open('./db/students.db')
 namespace DB {
@@ -91,6 +92,26 @@ namespace DB {
         const sql = `INSERT INTO students (FIO, birthDate, orderDorm, orderEnroll, enrollDate, birthPlace, address, roomId, iv) VALUES("${FIO}", "${birthDate}", ${orderDorm}, ${orderEnroll}, "${enrollDate}", "${birthPlace}", "${address}", ${roomId}, "${biv}")`
         
         console.log(sql)
+        db.run(sql)
+    }
+
+    export function addCorp(name: string){
+        const sql = `INSERT INTO corps (name) VALUES (${name})`
+        db.run(sql)
+    }
+
+    export function removeCorp(corpId: string){
+        const sql = `DELETE FROM corps WHERE corpId=${corpId}`
+        db.run(sql)
+    }
+
+    export function addRoom(roomNumber:number, floor:number, corpId: number){
+        const sql = `INSERT INTO rooms (number, floor, corpId) VALUES (${roomNumber}, ${floor}, ${corpId})`
+        db.run(sql)
+    }
+
+    export function removeRoom(roomId:number){
+        const sql = `DELETE FROM rooms WHERE roomId=${roomId}`
         db.run(sql)
     }
 }
