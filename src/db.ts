@@ -27,7 +27,7 @@ namespace DB {
         return result
     }
 
-    export async function getPeopleCountInRoom(roomNumber: number){
+    export async function getPeopleCountInRoom(roomNumber: number) {
         const people = `SELECT COUNT(*) FROM rooms INNER JOIN students ON rooms.roomId=students.roomId WHERE number=${roomNumber}`
         const result = (await db.all(people))["COUNT(*)"]
         return result
@@ -56,6 +56,11 @@ namespace DB {
         console.log(sql)
         let result = await db.all(sql)
         return result
+    }
+
+    export function setStudentInfo(FIO: string, birthDate: number, orderDorm: number, orderEnroll: number, enrollDate: number, birthPlace: string, address: string, roomId: number) {
+        const sql = `INSERT INTO students (FIO, birthDate, orderDorm, orderEnroll, enrollDate, birthPlace, address, roomId) VALUES(${FIO}, ${birthDate}, ${orderDorm}, ${orderEnroll}, ${enrollDate}, ${birthPlace}, ${address}, ${roomId})`
+        db.run(sql)
     }
 }
 
