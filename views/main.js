@@ -182,62 +182,62 @@ const addCorp = document.querySelector('.admin-panel .addCorp')
 const delCorp = document.querySelector('.admin-panel .delCorp')
 const addNumber = document.querySelector('.admin-panel .addNumber')
 const delNumber = document.querySelector('.admin-panel .delNumber')
-
-addCorp.onclick = () => {
-    const data = {
-        "name": document.querySelector('.admin-panel .corpName').value,
-        "location": document.querySelector('.admin-panel, .corpLocation').value
-    }
-    fetch("http://localhost:3000/api/addCorp", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
+if (addCorp) {
+    addCorp.onclick = () => {
+        const data = {
+            "name": document.querySelector('.admin-panel .corpName').value,
+            "location": document.querySelector('.admin-panel, .corpLocation').value
         }
-    })
-}
-
-delCorp.onclick = () => {
-    const data = {
-        "corpId": document.querySelector('.admin-panel .corp').value
+        fetch("http://localhost:3000/api/addCorp", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
     }
-    fetch("http://localhost:3000/api/removeCorp", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
-        }
-    })
-}
 
-addNumber.onclick = () => {
-    const data = {
-        "corpId": document.querySelector('.admin-panel .corpId').value,
-        "floor": document.querySelector('.admin-panel .floor').value,
-        "roomNumber": document.querySelector('.admin-panel .number').value
+    delCorp.onclick = () => {
+        const data = {
+            "corpId": document.querySelector('.admin-panel .corp').value
+        }
+        fetch("http://localhost:3000/api/removeCorp", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
     }
-    fetch("http://localhost:3000/api/addRoom", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
-        }
-    })
-}
 
-delNumber.onclick = () => {
-    const data = {
-        "roomId": document.querySelector('.admin-panel .roomId').value
+    addNumber.onclick = () => {
+        const data = {
+            "corpId": document.querySelector('.admin-panel .corpId').value,
+            "floor": document.querySelector('.admin-panel .floor').value,
+            "roomNumber": document.querySelector('.admin-panel .number').value
+        }
+        fetch("http://localhost:3000/api/addRoom", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
     }
-    fetch("http://localhost:3000/api/removeRoom", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
-        }
-    })
-}
 
+    delNumber.onclick = () => {
+        const data = {
+            "roomId": document.querySelector('.admin-panel .roomId').value
+        }
+        fetch("http://localhost:3000/api/removeRoom", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+    }
+}
 const sleep = ms => {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
