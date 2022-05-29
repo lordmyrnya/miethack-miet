@@ -21,9 +21,9 @@ namespace DB {
         return result
     }
 
-    export async function getRoomID(corpId: number, floor: number, roomNumber:number){
+    export async function getRoomID(corpId: number, floor: number, roomNumber: number) {
         const rooms = `SELECT roomId FROM rooms WHERE corpId=${corpId} AND floor=${floor} AND number=${roomNumber}`
-        const result = await db.all(rooms)
+        const result = await db.get(rooms)
         return result
     }
 
@@ -64,7 +64,7 @@ namespace DB {
         return result
     }
 
-    export function setStudentInfo(FIO: string, birthDate: number, orderDorm: number, orderEnroll: number, enrollDate: number, birthPlace: string, address: string, roomId: number) {
+    export function setStudentInfo(FIO: string, birthDate: string, orderDorm: number, orderEnroll: number, enrollDate: string, birthPlace: string, address: string, roomId: number) {
         const sql = `INSERT INTO students (FIO, birthDate, orderDorm, orderEnroll, enrollDate, birthPlace, address, roomId) VALUES(${FIO}, ${birthDate}, ${orderDorm}, ${orderEnroll}, ${enrollDate}, ${birthPlace}, ${address}, ${roomId})`
         db.run(sql)
     }
