@@ -1,0 +1,14 @@
+@media (max-width:1050px) {
+    .student-table {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .student-table img {
+        margin-left: 0;
+    }
+
+    .student h3 {
+        margin-left: 5px;
+    }
+}

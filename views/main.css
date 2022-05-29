@@ -108,10 +108,11 @@ input:focus {
     text-align: center;
 }
 
-table tr {
+.table table tr {
     height: 50px;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .table table tr:not(:first-child):hover {
@@ -158,6 +159,10 @@ table td {
 .student-table table {
     width: 100%;
     margin-left: 30px;
+}
+
+.student-table tr {
+    height: 50px;
 }
 
 .student-table td {
